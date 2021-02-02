@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "moodiary08c93ad7": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import './App.sass';
 import { Switch, Route, useHistory } from "react-router-dom";
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 
 import User from './Components/User.js';
 import Landing from './Components/Landing.js'
@@ -84,8 +85,9 @@ function App() {
           <Landing />
         </Route>
       </Switch>
+      <AmplifySignOut />
     </>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

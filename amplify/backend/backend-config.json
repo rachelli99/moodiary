@@ -6,5 +6,36 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "api": {
+    "moodiary": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "demo"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  },
+  "predictions": {
+    "interpreter": {
+      "providerPlugin": "awscloudformation",
+      "service": "Comprehend",
+      "interpretType": "interpretText"
+    }
+  },
+  "storage": {
+    "jsonstorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

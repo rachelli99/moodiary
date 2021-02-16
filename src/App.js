@@ -4,12 +4,19 @@ import './App.sass';
 import { Switch, Route, useHistory } from "react-router-dom";
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 
-import User from './Components/User.js';
 import Landing from './Components/Landing.js'
 import Today from './Components/Today.js';
 import History from './Components/History.js';
 import Mood from './Components/Mood.js';
 import Suggestion from './Components/Suggestion.js';
+import Score from './Components/Score.js';
+
+import Amplify from 'aws-amplify';
+import Predictions, { AmazonAIPredictionsProvider } from '@aws-amplify/predictions';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
+Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
 function App() {
   const history = useHistory()
@@ -45,6 +52,9 @@ function App() {
                 <button className="button is-light" onClick={() => sendTo("/suggestion")}>
                   <strong>Suggestion</strong>
                 </button>
+                <button className="button is-light" onClick={() => sendTo("/score_tweet")}>
+                  <strong>Score Tweet</strong>
+                </button>
               </div>
             </div>
           </div>
@@ -64,7 +74,6 @@ function App() {
         </div>
       </nav>
 
-
       <Switch>
         <Route path="/history">
           <History />
@@ -78,8 +87,8 @@ function App() {
         <Route path="/suggestion">
           <Suggestion />
         </Route>
-        <Route path="/user">
-          <User />
+        <Route path="/score_tweet">
+          <Score />
         </Route>
         <Route path="/">
           <Landing />
